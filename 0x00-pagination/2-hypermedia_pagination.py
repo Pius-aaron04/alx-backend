@@ -64,7 +64,7 @@ class Server:
                 "next_page": page + 1 if page * page_size <
                 len(self.dataset()) else None,
                 "prev_page": page - 1 if page > 1 else None,
-                "total_pages": len(self.dataset()) / page_size
+                "total_pages": len(self.dataset()) // page_size
                 }
 
         return hyper
