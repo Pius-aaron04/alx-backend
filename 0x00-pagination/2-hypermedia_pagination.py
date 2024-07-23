@@ -47,7 +47,6 @@ class Server:
         assert page > 0 and page_size > 0
         try:
             _range = index_range(page, page_size)
-            print(_range)
             return self.dataset()[_range[0]:_range[1]]
         except IndexError:
             return []
