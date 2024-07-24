@@ -37,4 +37,4 @@ class LIFOCache(BaseCaching):
 
         if key is None:
             return None
-        return self.cache_date.get(key)
+        return self.cache_data.get(key)
