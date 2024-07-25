@@ -25,7 +25,7 @@ class LRUCache(BaseCaching):
         Puts item into Cache
         """
 
-        if not any((key, item)):
+        if None in (key, item):
             return
         if len(self.cache_data) >= self.MAX_ITEMS and key not in\
            self.cache_data:
