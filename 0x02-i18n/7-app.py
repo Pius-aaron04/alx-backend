@@ -1,12 +1,12 @@
 #!/usr/bin/env python3
-""" doc doc doc """
+"""A simple flask app for i18n"""
 from flask import Flask, render_template, request, g
 from flask_babel import Babel
 import pytz
 
 
 class Config(object):
-    """doc doc doc"""
+    """Config class for app"""
 
     LANGUAGES = ["en", "fr"]
     BABEL_DEFAULT_LOCALE = "en"
@@ -27,7 +27,7 @@ users = {
 
 @babel.timezoneselector
 def get_timezone() -> str:
-    """doc doc doc"""
+    """get user timezone"""
     try:
         if request.args.get("timezone"):
             return pytz.timezone(request.args.get("timezone")).zone
@@ -39,7 +39,7 @@ def get_timezone() -> str:
 
 
 def get_user() -> dict:
-    """doc doc doc"""
+    """loads user data."""
     user_id = request.args.get("login_as")
     if user_id and int(user_id) in users:
         return users[int(user_id)]
@@ -48,13 +48,13 @@ def get_user() -> dict:
 
 @app.before_request
 def before_request() -> None:
-    """doc doc doc"""
+    """loads user before request"""
     g.user = get_user()
 
 
 @babel.localeselector
 def get_locale() -> str:
-    """doc doc doc"""
+    """get user locale"""
     if request.args.get("locale") in app.config["LANGUAGES"]:
         return request.args.get("locale")
     if g.user and g.user.get("locale") in app.config["LANGUAGES"]:
@@ -64,7 +64,7 @@ def get_locale() -> str:
 
 @app.route("/")
 def index() -> str:
-    """doc doc doc"""
+    """Home page route"""
     from datetime import datetime
     from flask_babel import format_datetime
 
